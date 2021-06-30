@@ -12,7 +12,7 @@ LimitRSS=infinity
 LimitCORE=infinity
 LimitNOFILE=999999
 WorkingDirectory=/usr/local/JvpnXR/
-ExecStart=/usr/local/JvpnXR/JvpnXR -config /etc/JvpnXR/config.yml
+ExecStart=/usr/local/JvpnXR/JvpnXR -config /home/JvpnXR/config.yml
 Restart=on-failure
 RestartSec=10
 
