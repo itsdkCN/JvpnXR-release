@@ -109,20 +109,20 @@ install_JvpnXR() {
 	cd /usr/local/JvpnXR/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/JvpnXR-project/JvpnXR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/itsdkCN/JvpnXR-release/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}检测 JvpnXR 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 JvpnXR 版本安装${plain}"
             exit 1
         fi
         echo -e "检测到 JvpnXR 最新版本：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/JvpnXR/JvpnXR-linux.zip https://github.com/JvpnXR-project/JvpnXR/releases/download/${last_version}/JvpnXR-linux-${arch}.zip
+        wget -N --no-check-certificate -O /usr/local/JvpnXR/JvpnXR-linux.zip https://github.com/itsdkCN/JvpnXR-release/releases/download/${last_version}/JvpnXR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 JvpnXR 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/JvpnXR-project/JvpnXR/releases/download/${last_version}/JvpnXR-linux-${arch}.zip"
+        url="https://github.com/itsdkCN/JvpnXR-release/releases/download/${last_version}/JvpnXR-linux-${arch}.zip"
         echo -e "开始安装 JvpnXR v$1"
         wget -N --no-check-certificate -O /usr/local/JvpnXR/JvpnXR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
@@ -136,7 +136,7 @@ install_JvpnXR() {
     chmod +x JvpnXR
     mkdir /etc/JvpnXR/ -p
     rm /etc/systemd/system/JvpnXR.service -f
-    file="https://github.com/JvpnXR-project/JvpnXR-release/raw/master/JvpnXR.service"
+    file="https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/JvpnXR.service"
     wget -N --no-check-certificate -O /etc/systemd/system/JvpnXR.service ${file}
     #cp -f JvpnXR.service /etc/systemd/system/
     systemctl daemon-reload
@@ -148,7 +148,7 @@ install_JvpnXR() {
 
     if [[ ! -f /etc/JvpnXR/config.yml ]]; then
         echo -e ""
-        echo -e "全新安装，请先参看教程：https://github.com/JvpnXR-project/JvpnXR，配置必要的内容"
+        echo -e "全新安装，请先参看教程：https://raw.githubusercontent.com/itsdkCN/JvpnXR-release，配置必要的内容"
     else
         systemctl start JvpnXR
         sleep 2
@@ -157,19 +157,17 @@ install_JvpnXR() {
         if [[ $? == 0 ]]; then
             echo -e "${green}JvpnXR 重启成功${plain}"
         else
-            echo -e "${red}JvpnXR 可能启动失败，请稍后使用 JvpnXR log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/JvpnXR-project/JvpnXR/wiki${plain}"
+            echo -e "${red}JvpnXR 可能启动失败，请稍后使用 JvpnXR log 查看日志信息，若无法启动，则可能更改了配置格式"
         fi
     fi
 
     if [[ ! -f /etc/JvpnXR/dns.json ]]; then
     fi
     
-    curl -o /usr/bin/JvpnXR -Ls https://raw.githubusercontent.com/JvpnXR-project/JvpnXR-release/master/JvpnXR.sh
+    curl -o /usr/bin/JvpnXR -Ls https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/JvpnXR.sh
     chmod +x /usr/bin/JvpnXR
     ln -s /usr/bin/JvpnXR /usr/bin/jvpnxr # 小写兼容
     chmod +x /usr/bin/jvpnxr
-    #curl -o /usr/bin/JvpnXR-tool -Ls https://raw.githubusercontent.com/JvpnXR-project/JvpnXR/master/JvpnXR-tool
-    #chmod +x /usr/bin/JvpnXR-tool
     echo -e ""
     echo "JvpnXR 管理脚本使用方法 (兼容使用xrayr执行，大小写不敏感): "
     echo "------------------------------------------"

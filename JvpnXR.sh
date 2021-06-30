@@ -84,7 +84,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/JvpnXR-project/JvpnXR-release/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,7 +108,7 @@ update() {
 #        fi
 #        return 0
 #    fi
-    bash <(curl -Ls https://raw.githubusercontent.com/JvpnXR-project/JvpnXR-release/master/install.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}更新完成，已自动重启 JvpnXR，请使用 JvpnXR log 查看运行日志${plain}"
         exit
@@ -270,7 +270,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/JvpnXR -N --no-check-certificate https://raw.githubusercontent.com/JvpnXR-project/JvpnXR-release/master/JvpnXR.sh
+    wget -O /usr/bin/JvpnXR -N --no-check-certificate https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/JvpnXR.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}下载脚本失败，请检查本机能否连接 Github${plain}"
@@ -387,7 +387,7 @@ show_usage() {
 show_menu() {
     echo -e "
   ${green}JvpnXR 后端管理脚本，${plain}${red}不适用于docker${plain}
---- https://github.com/JvpnXR-project/JvpnXR ---
+--- https://github.com/itsdkCN/JvpnXR-release ---
   ${green}0.${plain} 修改配置
 ————————————————
   ${green}1.${plain} 安装 JvpnXR
