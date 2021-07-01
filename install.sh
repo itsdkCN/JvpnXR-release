@@ -162,6 +162,7 @@ install_JvpnXR() {
     fi
 
     if [[ ! -f /etc/JvpnXR/dns.json ]]; then
+        echo -e ""
     fi
     
     curl -o /usr/bin/JvpnXR -Ls https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/JvpnXR.sh
