@@ -121,7 +121,7 @@ update() {
 
 config() {
     echo "JvpnXR在修改配置后会自动尝试重启"
-    vi /home/JvpnXR/config.yml
+    vi /etc/JvpnXR/config.yml
     sleep 2
     check_status
     case $? in
@@ -154,7 +154,7 @@ uninstall() {
     rm /etc/systemd/system/JvpnXR.service -f
     systemctl daemon-reload
     systemctl reset-failed
-    rm /home/JvpnXR/ -rf
+    rm /etc/JvpnXR/ -rf
     rm /usr/local/JvpnXR/ -rf
 
     echo ""

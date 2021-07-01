@@ -134,7 +134,7 @@ install_JvpnXR() {
     unzip JvpnXR-linux.zip
     rm JvpnXR-linux.zip -f
     chmod +x JvpnXR
-    mkdir /home/JvpnXR/ -p
+    mkdir /etc/JvpnXR/ -p
     rm /etc/systemd/system/JvpnXR.service -f
     file="https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/JvpnXR.service"
     wget -N --no-check-certificate -O /etc/systemd/system/JvpnXR.service ${file}
@@ -143,10 +143,10 @@ install_JvpnXR() {
     systemctl stop JvpnXR
     systemctl enable JvpnXR
     echo -e "${green}JvpnXR ${last_version}${plain} 安装完成，已设置开机自启"
-    cp geoip.dat /home/JvpnXR/
-    cp geosite.dat /home/JvpnXR/ 
+    cp geoip.dat /etc/JvpnXR/
+    cp geosite.dat /etc/JvpnXR/ 
 
-    if [[ ! -f /home/JvpnXR/config.yml ]]; then
+    if [[ ! -f /etc/JvpnXR/config.yml ]]; then
         echo -e ""
         echo -e "全新安装，请先参看教程：https://raw.githubusercontent.com/itsdkCN/JvpnXR-release，配置必要的内容"
     else
@@ -161,7 +161,7 @@ install_JvpnXR() {
         fi
     fi
 
-    if [[ ! -f /home/JvpnXR/dns.json ]]; then
+    if [[ ! -f /etc/JvpnXR/dns.json ]]; then
     fi
     
     curl -o /usr/bin/JvpnXR -Ls https://raw.githubusercontent.com/itsdkCN/JvpnXR-release/master/JvpnXR.sh
